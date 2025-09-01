@@ -170,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () => (),
+                      onPressed: () => login(),
                       child: const Text(
                         'เข้าสู่ระบบ',
                         style: TextStyle(color: Colors.blue),
@@ -229,5 +229,12 @@ class _RegisterPageState extends State<RegisterPage> {
             log('Error $error');
           });
     }
+  }
+
+  void login() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
   }
 }
