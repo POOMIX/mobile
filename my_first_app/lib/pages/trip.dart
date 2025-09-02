@@ -68,7 +68,13 @@ class _TripPageState extends State<TripPage> {
                   style: const TextStyle(fontSize: 16),
                 ),
               ),
-              FilledButton(onPressed: () => (), child: const Text('จองทริป')),
+              Center(
+                child: FilledButton(
+                  onPressed: () {
+                  },
+                  child: const Text('จองทริป'),
+                ),
+              ),
             ],
           );
         },
