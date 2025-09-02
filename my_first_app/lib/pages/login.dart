@@ -6,6 +6,7 @@ import 'package:my_first_app/model/response/customer_login_post_res.dart';
 import 'package:my_first_app/pages/register.dart';
 import 'package:my_first_app/pages/showtrip.dart';
 import 'package:my_first_app/config/config.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -24,12 +25,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    Configuration.getConfig().then(
-  (config) {
-	url = config['apiEndpoint'];
-  },
-);
+    Configuration.getConfig().then((config) {
+      url = config['apiEndpoint'];
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,7 +146,10 @@ class _LoginPageState extends State<LoginPage> {
           log(customerLoginPostResponse.customer.email);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ShowTripPage()),
+            MaterialPageRoute(
+              builder: (context) =>
+                  ShowTripPage(cid: customerLoginPostResponse.customer.idx),
+            ),
           );
         })
         .catchError((error) {

@@ -3,12 +3,15 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_first_app/config/config.dart';
+import 'package:my_first_app/pages/login.dart';
+import 'package:my_first_app/pages/profile.dart';
 import 'package:my_first_app/pages/trip.dart';
 import 'package:my_first_app/respone/trip_get_res.dart';
 
 class ShowTripPage extends StatefulWidget {
-  const ShowTripPage({super.key});
+  int cid = 0;
 
+  ShowTripPage({super.key, required this.cid});
   @override
   State<ShowTripPage> createState() => _ShowTripPageState();
 }
@@ -29,8 +32,32 @@ class _ShowTripPageState extends State<ShowTripPage> {
 
   @override
   Widget build(BuildContext context) {
+    log(widget.cid.toString());
     return Scaffold(
-      appBar: AppBar(title: const Text('รายการทริป')),
+      appBar: AppBar(
+        title: const Text('รายการทริป'),
+        actions: [
+          PopupMenuButton(
+            onSelected: (value) => {
+              if (value == 'profile')
+                {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(idx: widget.cid),
+                    ),
+                  ),
+                }
+              else if (value == 'logout')
+                {Navigator.popUntil(context, (route) => route.isFirst)},
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(child: Text('ข้อมูลส่วนตัว'), value: 'profile'),
+              PopupMenuItem(child: Text('ออกจากระบบ'), value: 'logout'),
+            ],
+          ),
+        ],
+      ),
       body: FutureBuilder(
         future: loadData,
         builder: (context, snapshot) {

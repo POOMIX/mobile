@@ -220,7 +220,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 customerLoginPostResponseFromJson(value.body);
             log(customerLoginPostResponse.customer.fullname);
             log(customerLoginPostResponse.customer.email);
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const LoginPage()),
             );
