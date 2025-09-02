@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_first_app/config/config.dart';
+import 'package:my_first_app/pages/trip.dart';
 import 'package:my_first_app/respone/trip_get_res.dart';
 
 class ShowTripPage extends StatefulWidget {
@@ -156,6 +157,18 @@ class _ShowTripPageState extends State<ShowTripPage> {
                                 title: Text(trip.name),
                                 subtitle: Text('ราคา: ${trip.price} บาท'),
                               ),
+                              FilledButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          TripPage(idx: trip.idx),
+                                    ),
+                                  );
+                                },
+                                child: const Text('รายละเอียดเพิ่มเติม'),
+                              ),
                             ],
                           ),
                         ),
@@ -169,6 +182,8 @@ class _ShowTripPageState extends State<ShowTripPage> {
       ),
     );
   }
+
+  Map<dynamic, dynamic> get gotoTrip => {};
 
   getTrips() async {
     // var res = await http.get(Uri.parse('$url/trips'));
@@ -193,4 +208,11 @@ class _ShowTripPageState extends State<ShowTripPage> {
     tripGetResponses = tripGetResponseFromJson(res.body);
     log(tripGetResponses.length.toString());
   }
+}
+
+void gotoTrip(int id, BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => TripPage(idx: id)),
+  );
 }
