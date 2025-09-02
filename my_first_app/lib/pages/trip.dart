@@ -40,7 +40,6 @@ class _TripPageState extends State<TripPage> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(tripIdxGetResponse.coverimage),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -54,13 +53,30 @@ class _TripPageState extends State<TripPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'ราคา ${tripIdxGetResponse.price} บาท',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  tripIdxGetResponse.country,
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
+              Image.network(tripIdxGetResponse.coverimage),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'ราคา ${tripIdxGetResponse.price} บาท',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(width: 130),
+                    Text(
+                      'โซน: ${tripIdxGetResponse.destinationZone}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -70,8 +86,7 @@ class _TripPageState extends State<TripPage> {
               ),
               Center(
                 child: FilledButton(
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   child: const Text('จองทริป'),
                 ),
               ),
