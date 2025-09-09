@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_first_app/config/config.dart';
 import 'package:my_first_app/model/request/customer_register_post_req.dart';
 import 'package:my_first_app/model/response/customer_login_post_res.dart';
 import 'package:my_first_app/pages/login.dart';
@@ -19,6 +21,15 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailctl = TextEditingController();
   TextEditingController passwordctl = TextEditingController();
   TextEditingController passwordConfirm = TextEditingController();
+  String url = '';
+  @override
+  void initState() {
+    super.initState();
+    Configuration.getConfig().then((config) {
+      url = config['apiEndpoint'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -210,20 +221,27 @@ class _RegisterPageState extends State<RegisterPage> {
 
       http
           .post(
-            Uri.parse("http://192.168.59.1:3000/customers"),
+            Uri.parse("$url/customers"),
             headers: {"Content-Type": "application/json; charset=utf-8"},
             body: customerRegisterPostRequestToJson(customerLoginPostRequest),
           )
           .then((value) {
             log(value.body);
-            CustomerLoginPostResponse customerLoginPostResponse =
-                customerLoginPostResponseFromJson(value.body);
-            log(customerLoginPostResponse.customer.fullname);
-            log(customerLoginPostResponse.customer.email);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginPage()),
-            );
+
+            final responseJson = jsonDecode(value.body);
+            if (responseJson["message"] == "Customer created successfully") {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            } else {
+              log("Register failed: ${responseJson["message"]}");
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("สมัครไม่สำเร็จ: ${responseJson["message"]}"),
+                ),
+              );
+            }
           })
           .catchError((error) {
             log('Error $error');

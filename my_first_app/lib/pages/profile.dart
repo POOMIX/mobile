@@ -195,7 +195,7 @@ class _ProfilePageState extends State<ProfilePage> {
         context: context,
         builder: (context) => AlertDialog(
           title: const Text('สำเร็จ'),
-          content: Text(result['message'] ?? 'บันทึกข้อมูลเรียบร้อย'),
+          content: Text('บันทึกข้อมูลเรียบร้อย'),
           actions: [
             FilledButton(
               onPressed: () => Navigator.pop(context),
