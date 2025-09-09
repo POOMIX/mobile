@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_first_app/config/config.dart';
-import 'package:my_first_app/pages/login.dart';
 import 'package:my_first_app/pages/profile.dart';
 import 'package:my_first_app/pages/trip.dart';
 import 'package:my_first_app/respone/trip_get_res.dart';

@@ -28,11 +28,10 @@ class _TripPageState extends State<TripPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      
+
       body: FutureBuilder(
         future: loadData,
         builder: (context, snapshot) {
-         
           if (snapshot.connectionState != ConnectionState.done) {
             return const Center(child: CircularProgressIndicator());
           }
