@@ -14,3 +14,13 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# ตัวอย่างหน้าตาแอป
+
+<img src = "Photo_Image/login.png" alt="LoginPage" width="200px" />
+<img src = "Photo_Image/register.png" alt="RegisterPage" width="200px" />
+<img src = "Photo_Image/showTrip1.png" alt="ShowTripPage1" width="200px" />
+<img src = "Photo_Image/showTrip2.png" alt="ShowTripPage2" width="200px" />
+<img src = "Photo_Image/trip.png" alt="tripPage" width="200px" />
+<img src = "Photo_Image/profile1.png" alt="ProfilePage1" width="200px" />
+<img src = "Photo_Image/profile2.png" alt="ProfilePage2" width="200px" />

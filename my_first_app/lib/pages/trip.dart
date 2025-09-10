@@ -35,7 +35,6 @@ class _TripPageState extends State<TripPage> {
           if (snapshot.connectionState != ConnectionState.done) {
             return const Center(child: CircularProgressIndicator());
           }
-          // Load Done
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
