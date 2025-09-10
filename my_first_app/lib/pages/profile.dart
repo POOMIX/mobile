@@ -92,14 +92,14 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                // Avatar
+                
                 CircleAvatar(
                   radius: 60,
                   backgroundImage: NetworkImage(customerIdxGetResponse.image),
                 ),
                 const SizedBox(height: 20),
 
-                // Fullname
+                
                 TextFormField(
                   controller: fullnameController,
                   decoration: const InputDecoration(
@@ -109,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 const SizedBox(height: 10),
 
-                // Phone
+                
                 TextFormField(
                   controller: phoneController,
                   decoration: const InputDecoration(
@@ -119,7 +119,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 const SizedBox(height: 10),
 
-                // Email
+                
                 TextFormField(
                   controller: emailController,
                   decoration: const InputDecoration(
@@ -129,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 const SizedBox(height: 10),
 
-                // Image link
+                
                 TextFormField(
                   controller: imageController,
                   decoration: const InputDecoration(
@@ -139,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 const SizedBox(height: 30),
 
-                // ปุ่มบันทึก
+                
                 SizedBox(
                   width: double.infinity,
                   child: FilledButton(
@@ -162,7 +162,7 @@ class _ProfilePageState extends State<ProfilePage> {
     log(res.body);
     customerIdxGetResponse = customerIdxGetResponseFromJson(res.body);
 
-    // set ค่าเริ่มต้นใน controller
+    
     fullnameController.text = customerIdxGetResponse.fullname;
     phoneController.text = customerIdxGetResponse.phone;
     emailController.text = customerIdxGetResponse.email;
